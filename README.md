@@ -1,4 +1,4 @@
-## Inicializando projeto com documentação
+# Inicializando projeto Chat Rooms com documentação
 
 ### Fellipe Fernandes Nogueira
 ### Arthur Rodrigues
