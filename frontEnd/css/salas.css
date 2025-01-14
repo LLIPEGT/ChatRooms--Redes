@@ -1,0 +1,103 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #7C7C7C;
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.caixa {
+    background-color: white;
+    width: 100%;
+    max-width: 600px;
+    border-radius: 10´x;
+    box-shadow: 0 4px 10px black;
+}
+
+.caixa-nome-usuario {
+    margin: 10px 5px;
+    
+}
+
+.caixa-lista-salas {
+    margin: 10px 5px;
+}
+
+.caixa-criar-grupo {
+    margin: 10px 5px;
+}
+
+h1 {
+    color: gray;
+    margin: 10px;
+    text-align: center;
+}
+
+h2 { 
+    color: #9E9E9E;
+    margin-bottom: 10px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    padding: 10px;
+    background-color: #f8f9fa;
+    border: 1px solid black;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+li:hover {
+    background-color: blue;
+    color: white;
+}
+
+input {
+    width: 80%;
+    padding: 10px;
+    margin: 10px 5px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    border: 2px solid black;
+}
+
+button {
+    padding: 10px 10px;
+    background-color: blue;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #70A1FA;
+}
+
+input:focus {
+    border-color: #70A1FA;
+    outline: none;
+}
+
+@media (max-width: 600px) {
+    .caixa {
+        width: 90%;
+        padding: 15px;
+    }
+
+    input, button {
+        width: 100%;
+    }
+}
