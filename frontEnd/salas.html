@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/socket.io/socket.io.js" defer></script>
+    <script src="js/eventosGrupo.js" defer></script>
     <link rel="stylesheet" href="css/salas.css">
     <title>Chat Rooms</title>
 </head>
@@ -12,20 +14,20 @@
         <div class="caixa-nome-usuario">
             <h2>Usuário</h2>
             <div></div>
-            <input type="text" placeholder="Digite seu nome de usuário">
+            <input id="username" type="text" placeholder="Digite seu nome de usuário">
         </div>
 
         <div class="caixa-lista-salas">
             <h2>Grupos Criados</h2>
-            <ul>
-                <li>aaa</li>
+            <ul id="lista-de-grupos">
+                <!-- Lista de grupos será preenchida aqui -->
             </ul>
         </div>
 
         <div class="caixa-criar-grupo">
             <h2>Criar Novo Grupo</h2>
-            <input type="text" placeholder="Digite o nome do grupo">
-            <button>Criar grupo</button>
+            <input id="nome-do-grupo" type="text" placeholder="Digite o nome do grupo">
+            <button id="criar-grupo">Criar grupo</button>
         </div>
     </div>
 </body>

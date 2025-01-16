@@ -1,10 +1,12 @@
 const {Router} = require('express');
 
+const GrupoRepository = require('../repositories/GrupoRepository')
 
-const routes = Router();
+const grupoRepository = new GrupoRepository();
+const routes = express.Router();
 
-routes.get("/seila", () => {
-    return "<h1> Olá, mundo </h1>";
+routes.get("/", (req, res) => {
+    res.json(grupoRepository.pegarListaDeGrupos());
 })
 
 module.exports = routes;
