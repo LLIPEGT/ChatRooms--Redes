@@ -27,9 +27,19 @@ criarGrupoBt.addEventListener('click', () => {
 });
 
 socket.on('atualizar lista', (grupos) => {
+    listaDeGrupos.innerHTML = '';
     grupos.forEach(grupo => {
         const newElementGrupo = document.createElement('li');
         newElementGrupo.textContent = grupo;
+        newElementGrupo.addEventListener('click', () => {
+            if(username) {
+                window.location.href = `/chat.html?grupo=${grupo}&username=${username}`;
+            }
+            else{
+                alert('Insira um nome de usuário antes de entrar no grupo');
+            }
+        })
+
         listaDeGrupos.appendChild(newElementGrupo);
     });
 });
@@ -44,4 +54,5 @@ socket.on('ERRO', (mensagem) => {
 
 window.onload = () => {
     socket.emit('pedir lista de grupos');
+    socket.emit('atualizar lista');
 };

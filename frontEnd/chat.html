@@ -4,6 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/socket.io/socket.io.js" defer></script>
+    <script src="js/eventosChat.js" defer></script>
     <link rel="stylesheet" href="css/chat.css">
     <title>Conversar</title>
 </head>
@@ -12,20 +14,20 @@
     <div class="caixa">
         <h1>Chat Rooms</h1>
         <div class="caixa-info-grupo">
-            <h2>--- aqui vai ser o nome do grupo---</h2>
-            <p>Conectado como: <span></span></p>
+            <h2 id="nome-do-grupo"></h2>
+            <p>Conectado como: <span id="username"></span></p>
         </div>
 
         <div class="caixa-mensagens">
-            <ul>
-                <li>aaaa</li>
+            <ul id="lista-de-mensagem">
+                
             </ul>
         </div>
 
         <div class="caixa-input-mensagem">
             <a href="salas.html" class="link-voltar">Voltar</a>
-            <input type="text" placeholder="Digite sua mensagem...">
-            <button>Enviar</button>
+            <input id="mensagem" type="text" placeholder="Digite sua mensagem...">
+            <button id="enviar-mensagem">Enviar</button>
         </div>
     </div>
 </body>
