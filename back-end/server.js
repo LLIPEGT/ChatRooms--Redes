@@ -1,10 +1,10 @@
 //Criação do servidor
 const express = require('express');
+const cors = require('cors')
 const {createServer} = require('http');
 const {Server} = require('socket.io');
 const GrupoController = require('../back-end/src/controllers/GrupoController')
 const path = require('path');
-
 
 const app = express();
 const server = createServer(app);
@@ -12,7 +12,7 @@ const io = new Server(server);
 const salasPath = path.join(__dirname, '..', 'frontEnd', 'salas.html');
 //console.log('Caminho para o arquivo:', salasPath); TESTE
 
-
+app.use(cors());
 
 app.use(express.static(path.join(__dirname, '..', 'frontEnd')));
 app.get('/', (req, res) => {
