@@ -18,8 +18,6 @@ app.get('/', (req, res) => {
 })
 
 io.on('connection', (socket) => {
-    console.log(`Novo usuario conectado: ${socket.id}`);
-
     new GrupoController(socket, io);
 })
 

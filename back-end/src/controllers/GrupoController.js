@@ -10,17 +10,16 @@ class GrupoController {
     }
 
     init() {
-        this.socket.on('criar grupo', (nomeGrupo, username) => this.criar(nomeGrupo, username));
+        this.socket.on('criar grupo', (nomeGrupo) => this.criar(nomeGrupo));
         this.socket.on('pedir lista de grupos', () => this.pedirLista());
         this.socket.on('entrar no grupo', (nomeGrupo, username) => this.entrarGrupo(nomeGrupo, username));
         this.socket.on('enviar mensagem', (nomeGrupo, mensagem) => this.enviarMensagem(nomeGrupo, mensagem));
-
+        this.socket.on('disconectar', (nomeGrupo, username) => this.disconectarDoGrupo(nomeGrupo, username));
     }
 
-    criar(nomeGrupo, username) {
-        if(grupoRepository.criar(nomeGrupo, username)){
+    criar(nomeGrupo) {
+        if(grupoRepository.criar(nomeGrupo)){
             this.socket.emit('grupo criado', nomeGrupo);
-
             this.io.emit("atualizar lista", grupoRepository.pegarListaDeGrupos())
         }
 
@@ -38,6 +37,7 @@ class GrupoController {
         if(entrar){
             this.socket.emit('mensagens passadas', entrar);
             this.io.to(nomeGrupo).emit('novo membro', username);
+            this.conectarUsuario();
         }
         else{
             this.socket.emit('ERRO', 'Grupo não encontrado!');
@@ -53,6 +53,18 @@ class GrupoController {
         }
     }
 
+    conectarUsuario () {
+        console.log(`Novo usuario conectado: ${this.socket.id}`);
+    }
+
+    disconectarDoGrupo (nomeGrupo, username) {
+        if(grupoRepository.disconectarGrupoUser(nomeGrupo, username)) {
+            this.socket.emit("Usuario desconectado", nomeGrupo, username)
+        }
+        else{
+            this.socket.emit('ERRO', 'Erro ao desconectar usuario !');
+        }
+    }
 }
 
 module.exports = GrupoController;

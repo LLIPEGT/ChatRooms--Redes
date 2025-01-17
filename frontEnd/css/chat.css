@@ -51,6 +51,10 @@ ul li {
     border-radius: 5px;
 }
 
+.novo-membro{
+    background-color: green;
+}
+
 h1 {
     color: gray;
     margin-bottom: 20px;

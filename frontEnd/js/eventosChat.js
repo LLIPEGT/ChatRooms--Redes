@@ -6,7 +6,8 @@ const socket = io();
 
 const listaDeMensagem = document.getElementById('lista-de-mensagem');
 const mensagemInput = document.getElementById('mensagem');
-const enviarMensagemBt = document.getElementById('enviar-mensagem')
+const enviarMensagemBt = document.getElementById('enviar-mensagem');
+const sairGrupo = document.getElementById('sair-do-grupo');
 const nomeGrupoElemento = document.getElementById('nome-do-grupo');
 const usernameElement = document.getElementById('username');
 
@@ -19,6 +20,16 @@ nomeGrupoElemento.textContent = nomeGrupo;
 usernameElement.textContent = username;
 
 socket.emit('entrar no grupo', nomeGrupo, username);
+
+socket.on('novo membro', (user) => {
+
+    const newMensagem = document.createElement('li');
+    newMensagem.textContent = `----/${user} entrou no grupo-----/`
+
+    newMensagem.classList.add('novo-membro');
+
+    listaDeMensagem.appendChild(newMensagem);
+});
 
 socket.on('mensagens passadas', (mensagens) => {
     mensagens.forEach(mensagem => {
@@ -45,5 +56,9 @@ enviarMensagemBt.addEventListener('click', () => {
         alert('Digite uma mensagem!');
     }
 });
+
+sairGrupo.addEventListener('click', () => {
+    socket.emit('disconectar', nomeGrupo, username);
+})
 
 

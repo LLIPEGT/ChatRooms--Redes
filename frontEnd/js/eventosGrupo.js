@@ -19,11 +19,14 @@ usernameInput.addEventListener('input', (e) => {
 criarGrupoBt.addEventListener('click', () => {
     const nomeGrupo = nomeDoGrupoInpt.value;
 
-    if (username !== "" && nomeGrupo) {
-        socket.emit('criar grupo', nomeGrupo, username);
-    } else {
+    if (nomeGrupo.value == "" ) {
         alert("Insira um nome de usuário e um nome para o grupo");
+    
+    } else {
+        socket.emit('criar grupo', nomeGrupo);
     }
+
+    
 });
 
 socket.on('atualizar lista', (grupos) => {
