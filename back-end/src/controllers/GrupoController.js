@@ -19,7 +19,6 @@ class GrupoController {
 
     criar(nomeGrupo) {
         if(grupoRepository.criar(nomeGrupo)){
-            this.socket.emit('grupo criado', nomeGrupo);
             this.io.emit("atualizar lista", grupoRepository.pegarListaDeGrupos())
         }
 
