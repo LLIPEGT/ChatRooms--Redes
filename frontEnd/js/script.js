@@ -3,6 +3,7 @@
 const login = document.querySelector(".login")
 const loginForm = login.querySelector(".login__form")
 const loginInput = login.querySelector(".login__input")
+const salaInput = login.querySelector(".login__salas")
 
 // chat elements
 
@@ -22,7 +23,7 @@ const colors = [
     "gold"
 ]
 
-const user = { id: "", name: "", color: "" }
+const user = { id: "", name: "", color: "", idSala: ""}
 
 let websocket
 
@@ -31,6 +32,7 @@ const handleLogin = (event) => {
 
     user.id = crypto.randomUUID()
     user.name = loginInput.value
+    user.idSala = salaInput.value
     user.color = getRandomColor()
 
     login.style.display = "none"
@@ -77,10 +79,9 @@ const scrollScreen = () => {
 }
 
 const processMessage = ({data}) => {
-    const { userId, username, usercolor, content } = JSON.parse(data)
+    const { userId, username, usercolor, content, idSala } = JSON.parse(data)
     
     const message = userId == user.id ? createMessageSelfElement(content) : createMessageOtherElement(content, username, usercolor)
-    
     chatMessages.appendChild(message)
 
     scrollScreen()
@@ -91,6 +92,7 @@ const sendMessage = (event) => {
 
     const message = {
         userId: user.id,
+        idSala: user.idSala,
         username: user.name,
         usercolor: user.color,
         content: chatInput.value

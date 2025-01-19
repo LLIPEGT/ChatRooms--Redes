@@ -6,6 +6,7 @@ dotenv.config()
 const wss = new WebSocketServer({ port: 8000 })
 
 wss.on("connection", (ws) => {
+    console.log(ws)
     ws.on("error", console.error)
     ws.on("message", (data) => {
         console.log(data.toString())
