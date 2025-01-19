@@ -15,6 +15,9 @@ wss.on("connection", (ws) => {
 
     console.log("client connected")
 
+    ws.on("close", () => {
+        console.log("client disconnected")
+    })
 })
 
 

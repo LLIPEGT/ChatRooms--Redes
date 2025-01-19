@@ -11,7 +11,7 @@
 }
 
 body{
-    background: url("../images/dotted-line-geometric-seamless-pattern-vector-7274424.jpg");
+    background: url("../images/dark-background-abstract-background-network-3d-background-3840x2160-8324.png");
 }
 
 .container{
@@ -140,7 +140,16 @@ body{
     background: none;
     color: #f2f2f2;
     cursor: pointer;
+    font-size: 3rem;
 
+}
+
+.exit__button{
+    border: none;
+    background: none;
+    color: #f2f2f2;
+    cursor: pointer;
+    font-size: 2rem;
 }
 
 .chat__button > span {

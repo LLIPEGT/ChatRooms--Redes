@@ -43,9 +43,6 @@ const handleLogin = (event) => {
     websocket.onmessage = processMessage
 }
 
-const disconnect = (event) => {
-}
-
 
 const createMessageSelfElement = (content) => {
     const div = document.createElement("div")
@@ -84,13 +81,7 @@ const scrollScreen = () => {
 const processMessage = ({data}) => {
     const { userId, username, usercolor, content, idSala } = JSON.parse(data)
     
-    let message;
-    if (userId == user.id) {
-        message = createMessageSelfElement(content);
-    } else if (userId != user.id && idSala == user.idSala){
-        message = createMessageOtherElement(content, username, usercolor);
-    }
-
+    const message = userId == user.id ? createMessageSelfElement(content) : createMessageOtherElement(content, username, usercolor)
     chatMessages.appendChild(message)
 
     scrollScreen()
@@ -107,23 +98,9 @@ const sendMessage = (event) => {
         content: chatInput.value
     }
 
-    if (message.content == "/sair") {
-            if (websocket) {
-            websocket.close();
-        }
-
-        login.style.display = "block";
-        chat.style.display = "none";
-        
-        user.id = "";
-        user.name = "";
-        user.color = "";
-        user.idSala = "";
-    }
-
     websocket.send(JSON.stringify(message))
     chatInput.value = ""
 }
 
 loginForm.addEventListener("submit", handleLogin)
-chatForm.addEventListener("submit", sendMessage)
+chatForm.addEventListener("submit",sendMessage)
